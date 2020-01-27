@@ -1,0 +1,24 @@
+{
+  "name": "deepars",
+  "version": "0.1.0",
+  "description": "Deeplink and universal link parsers for React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calintamas/deepars.git"
+  },
+  "keywords": [
+    "deeplink",
+    "parser",
+    "react-native"
+  ],
+  "author": "Calin Tamas <calinntamas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calintamas/deepars/issues"
+  },
+  "homepage": "https://github.com/calintamas/deepars#readme"
+}
