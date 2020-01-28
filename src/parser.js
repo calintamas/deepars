@@ -6,19 +6,21 @@ const getKeys = (obj) => Object.keys(obj);
 const findKey = (lookupObj) => (arr) => arr.find((key) => !!lookupObj[key]);
 const getValue = (lookupObj) => (key) => lookupObj[key];
 
-const DeeplinkParser = {
-  routes: {},
+class Parser {
+  constructor(routes) {
+    this.routes = routes;
+  }
 
-  config: (routes = {}) => {
-    DeeplinkParser.routes = routes;
-  },
+  getRoutes() {
+    return this.routes;
+  }
 
-  parse: (payload = {}) => {
+  parse(payload = {}) {
     if (!isObject(payload)) {
       return {};
     }
 
-    const { routes } = DeeplinkParser;
+    const routes = this.getRoutes();
 
     // Find the key that is used to config the route
     const routeConfig = pipe(
@@ -45,6 +47,6 @@ const DeeplinkParser = {
 
     return navigationAction;
   }
-};
+}
 
-export default DeeplinkParser;
+export default Parser;

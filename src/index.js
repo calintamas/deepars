@@ -1,3 +1,3 @@
-import DeeplinkParser from './deeplink-parser';
+import Parser from './parser';
 
-export { DeeplinkParser };
+export { Parser };
