@@ -18,7 +18,7 @@ class Parser {
   parse(payload = {}) {
     try {
       if (!isObject(payload)) {
-        return {};
+        return null;
       }
 
       const routes = this.getRoutes();
@@ -48,7 +48,7 @@ class Parser {
 
       return navigationAction;
     } catch (err) {
-      return {};
+      return null;
     }
   }
 }
