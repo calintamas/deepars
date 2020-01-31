@@ -16,36 +16,40 @@ class Parser {
   }
 
   parse(payload = {}) {
-    if (!isObject(payload)) {
+    try {
+      if (!isObject(payload)) {
+        return {};
+      }
+
+      const routes = this.getRoutes();
+
+      // Find the key that is used to config the route
+      const routeConfig = pipe(
+        getKeys,
+        lowercase,
+        findKey(routes),
+        getValue(routes)
+      )(payload);
+
+      // Generate navigation action
+      const { routeName, params } = routeConfig;
+
+      let navigationAction = {
+        routeName: isFunc(routeName) ? routeName(payload) : routeName
+      };
+
+      if (params) {
+        navigationAction.params = isFunc(params) ? params(payload) : params;
+      }
+
+      if (__DEV__) {
+        console.log('(DeeplinkParser) navigationAction:', navigationAction);
+      }
+
+      return navigationAction;
+    } catch (err) {
       return {};
     }
-
-    const routes = this.getRoutes();
-
-    // Find the key that is used to config the route
-    const routeConfig = pipe(
-      getKeys,
-      lowercase,
-      findKey(routes),
-      getValue(routes)
-    )(payload);
-
-    // Generate navigation action
-    const { routeName, params } = routeConfig;
-
-    let navigationAction = {
-      routeName: isFunc(routeName) ? routeName(payload) : routeName
-    };
-
-    if (params) {
-      navigationAction.params = isFunc(params) ? params(payload) : params;
-    }
-
-    if (__DEV__) {
-      console.log('(DeeplinkParser) navigationAction:', navigationAction);
-    }
-
-    return navigationAction;
   }
 }
 
