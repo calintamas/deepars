@@ -1,6 +1,6 @@
 {
   "name": "deepars",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Deeplink and universal link parsers for React Native",
   "main": "lib/index.js",
   "scripts": {
